@@ -1,4 +1,4 @@
-target
-.idea
-.swagger-codegen
-*.properties
+/.idea/
+/.swagger-codegen/
+/target/
+/src/main/resources/application.properties
