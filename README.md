@@ -15,11 +15,11 @@ Start your server as an simple java application
 You can view the api documentation in swagger-ui by pointing to  
 http://localhost:8010/  
 
-###Additional features:
+### Additional features:
 1)  This server uses [MapStruct](http://mapstruct.org/) to create mappings between Swagger-generated model
 classes and entities that will be mapped to the Domain database.
 
-###Additional remarks:
+### Additional remarks:
 1) Although Swagger-generated part and implemented part are decoupled as much as possible, Spring boot runner
 class has additional annotations to support scanning through all components.
 2)  Springfox has a dependency to mapstruct library prior to jdk-8. That's why it has to be excluded in pom.xml file.
@@ -38,7 +38,7 @@ class has additional annotations to support scanning through all components.
         </dependency>
 ```
 
-###How to run?
+### How to run?
 
 ```
 mvn clean install
