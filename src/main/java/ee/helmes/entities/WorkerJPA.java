@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 public class WorkerJPA {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(length = 900)

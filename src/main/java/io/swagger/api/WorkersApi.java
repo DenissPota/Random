@@ -6,6 +6,7 @@
 package io.swagger.api;
 
 import io.swagger.model.Error;
+import io.swagger.model.Worker;
 import io.swagger.model.Workers;
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
@@ -23,18 +24,37 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2018-12-04T10:23:19.831Z[GMT]")
+
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2018-12-06T11:58:55.652Z[GMT]")
 
 @Api(value = "workers", description = "the workers API")
 public interface WorkersApi {
 
-    @ApiOperation(value = "List all workers", nickname = "listWorkers", notes = "", response = Workers.class, tags={ "workers", })
-    @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "A paged array of workers", response = Workers.class),
-        @ApiResponse(code = 200, message = "unexpected error", response = Error.class) })
+    @ApiOperation(value = "Inserts new worker", nickname = "addWorker", notes = "", response = Worker.class, tags = {"workers",})
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "created worker", response = Worker.class)})
     @RequestMapping(value = "/workers",
-        produces = { "application/json" }, 
-        method = RequestMethod.GET)
-    ResponseEntity<Workers> listWorkers(@ApiParam(value = "How many items to return at one time (max 100)") @Valid @RequestParam(value = "limit", required = false) Integer limit);
+            produces = {"application/json"},
+            method = RequestMethod.POST)
+    ResponseEntity<Worker> addWorker(@ApiParam(value = "Pet object that needs to be added to the store", required = true) @Valid @RequestBody Worker body);
+
+
+    @ApiOperation(value = "List all workers", nickname = "listAllWorkers", notes = "", response = Workers.class, tags = {"workers",})
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "A paged array of workers", response = Workers.class),
+            @ApiResponse(code = 200, message = "unexpected error", response = Error.class)})
+    @RequestMapping(value = "/workers",
+            produces = {"application/json"},
+            method = RequestMethod.GET)
+    ResponseEntity<Workers> listAllWorkers(@ApiParam(value = "How many items to return at one time (max 100)") @Valid @RequestParam(value = "limit", required = false) Integer limit);
+
+
+    @ApiOperation(value = "Returns worker by id", nickname = "listWorkerById", notes = "", response = Worker.class, tags = {"workers",})
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "single worker by id", response = Worker.class)})
+    @RequestMapping(value = "/workers/{workerId}",
+            produces = {"application/json"},
+            method = RequestMethod.GET)
+    ResponseEntity<Worker> listWorkerById(@Min(1L) @ApiParam(value = "", required = true, allowableValues = "") @PathVariable("workerId") Long workerId);
 
 }

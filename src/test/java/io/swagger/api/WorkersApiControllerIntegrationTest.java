@@ -1,6 +1,7 @@
 package io.swagger.api;
 
 import io.swagger.model.Error;
+import io.swagger.model.Worker;
 import io.swagger.model.Workers;
 
 import java.util.*;
@@ -23,10 +24,24 @@ public class WorkersApiControllerIntegrationTest {
     private WorkersApi api;
 
     @Test
-    public void listWorkersTest() throws Exception {
+    public void addWorkerTest() throws Exception {
+        Worker body = new Worker();
+        ResponseEntity<Worker> responseEntity = api.addWorker(body);
+        assertEquals(HttpStatus.NOT_IMPLEMENTED, responseEntity.getStatusCode());
+    }
+
+    @Test
+    public void listAllWorkersTest() throws Exception {
         Integer limit = 56;
-        ResponseEntity<Workers> responseEntity = api.listWorkers(limit);
+        ResponseEntity<Workers> responseEntity = api.listAllWorkers(limit);
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+    }
+
+    @Test
+    public void listWorkerByIdTest() throws Exception {
+        Long workerId = 789L;
+        ResponseEntity<Worker> responseEntity = api.listWorkerById(workerId);
+        assertEquals(HttpStatus.NOT_IMPLEMENTED, responseEntity.getStatusCode());
     }
 
 }
